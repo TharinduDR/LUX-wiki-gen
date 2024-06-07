@@ -19,8 +19,8 @@ model_representation = model_name.replace('/', '-')
 
 SEED = 777
 
-train = Dataset.to_pandas(load_dataset('instilux/lb-rtl-titles_gen', split='train', download_mode='force_redownload'))
-test = Dataset.to_pandas(load_dataset('instilux/lb-rtl-titles_gen', split='test', download_mode='force_redownload'))
+train = Dataset.to_pandas(load_dataset('instilux/lb-rtl-pos-comment_gen', split='train', download_mode='force_redownload'))
+test = Dataset.to_pandas(load_dataset('instilux/lb-rtl-pos-comment_gen', split='test', download_mode='force_redownload'))
 
 train["prefix"] = ""
 test["prefix"] = ""
@@ -38,22 +38,22 @@ model_args.max_seq_length = 256
 model_args.evaluate_generated_text = True
 model_args.evaluate_during_training = True
 model_args.evaluate_during_training_verbose = True
-model_args.evaluate_during_training_steps = 10000
+model_args.evaluate_during_training_steps = 500
 model_args.use_multiprocessing = False
 model_args.use_multiprocessing_for_evaluation = False
 model_args.use_multiprocessed_decoding = False
 model_args.overwrite_output_dir = True
 model_args.save_recent_only = True
-model_args.logging_steps = 10000
+model_args.logging_steps = 500
 model_args.manual_seed = SEED
 model_args.early_stopping_patience = 25
-model_args.save_steps = 10000
+model_args.save_steps = 500
 
 model_args.output_dir = os.path.join("outputs", model_representation)
 model_args.best_model_dir = os.path.join("outputs", model_representation, "best_model")
 model_args.cache_dir = os.path.join("cache_dir", model_representation)
 
-model_args.wandb_project = "LUX Headline Generation"
+model_args.wandb_project = "LUX Comment Generation"
 model_args.wandb_kwargs = {"name": model_name}
 
 model = T5Model(model_type, model_name, args=model_args, use_cuda=torch.cuda.is_available())
