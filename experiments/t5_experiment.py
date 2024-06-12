@@ -31,25 +31,25 @@ train = train.rename(columns={'text': 'input_text', 'target': 'target_text'})
 test = test.rename(columns={'text': 'input_text', 'target': 'target_text'})
 
 model_args = T5Args()
-model_args.num_train_epochs = 10
+model_args.num_train_epochs = 20
 model_args.no_save = False
 model_args.fp16 = False
-model_args.learning_rate = 1e-4
+model_args.learning_rate = 1e-5
 model_args.train_batch_size = 8
 model_args.max_seq_length = 256
 model_args.evaluate_generated_text = True
 model_args.evaluate_during_training = True
 model_args.evaluate_during_training_verbose = True
-model_args.evaluate_during_training_steps = 500
+model_args.evaluate_during_training_steps = 100
 model_args.use_multiprocessing = False
 model_args.use_multiprocessing_for_evaluation = False
 model_args.use_multiprocessed_decoding = False
 model_args.overwrite_output_dir = True
 model_args.save_recent_only = True
-model_args.logging_steps = 500
+model_args.logging_steps = 100
 model_args.manual_seed = SEED
 model_args.early_stopping_patience = 25
-model_args.save_steps = 500
+model_args.save_steps = 100
 
 model_args.output_dir = os.path.join("outputs", model_representation)
 model_args.best_model_dir = os.path.join("outputs", model_representation, "best_model")
