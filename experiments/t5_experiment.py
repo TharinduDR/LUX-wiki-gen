@@ -19,8 +19,8 @@ model_representation = model_name.replace('/', '-')
 
 SEED = 777
 
-train = Dataset.to_pandas(load_dataset('instilux/lb-rtl-pos-comment_gen', split='train', download_mode='force_redownload'))
-test = Dataset.to_pandas(load_dataset('instilux/lb-rtl-pos-comment_gen', split='test', download_mode='force_redownload'))
+train = Dataset.to_pandas(load_dataset('instilux/lb-wiki-description-short_gen', split='train', download_mode='force_redownload'))
+test = Dataset.to_pandas(load_dataset('instilux/lb-wiki-description-short_gen', split='test', download_mode='force_redownload'))
 
 train = train[train['target'].notnull()]
 
